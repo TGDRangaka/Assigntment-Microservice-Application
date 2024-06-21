@@ -1,6 +1,7 @@
 package lk.ijse.userservice.controller;
 
 import lk.ijse.userservice.dto.UserDTO;
+import lk.ijse.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
+    private final UserService userService;
+
     @GetMapping("/health")
     public String health() {
         return "User Good!";
@@ -16,10 +19,18 @@ public class UserController {
 //    Registration
     @PostMapping
     public UserDTO registerUser(@RequestBody UserDTO user){
-        return user;
+        return userService.register(user);
     }
 
 //    Profile Update
+    @PutMapping("/{userId}")
+    public void updateUser(@RequestBody UserDTO user, @PathVariable String userId){
+        userService.update(user, userId);
+    }
 
 //    Credentials Verification
+    @PostMapping("/verify-user/{email}/{password}")
+    public boolean loginUser(@PathVariable String email, @PathVariable String password){
+        return userService.userVerify(email, password);
+    }
 }

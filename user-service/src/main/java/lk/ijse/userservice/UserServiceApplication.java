@@ -1,5 +1,6 @@
 package lk.ijse.userservice;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,5 +20,10 @@ public class UserServiceApplication {
     @LoadBalanced
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
+    }
+    
+    @Bean
+    public ModelMapper getModelMapper(){
+        return new ModelMapper();
     }
 }
