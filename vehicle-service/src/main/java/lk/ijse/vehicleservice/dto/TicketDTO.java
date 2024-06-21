@@ -14,7 +14,6 @@ import java.time.LocalDate;
 public class TicketDTO {
     private String id;
     private LocalDate issueDate;
-    @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
     private String userId;
