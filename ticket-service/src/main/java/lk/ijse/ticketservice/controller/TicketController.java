@@ -30,10 +30,12 @@ public class TicketController {
     }
 
 //    update status
-    @PutMapping("/payed/{ticketId}")
-    public ResponseEntity updateStatus(@PathVariable String ticketId){
+    @PutMapping("/status/{ticketId}")
+    public ResponseEntity updateStatus(@PathVariable String ticketId, @RequestBody TicketDTO ticketDTO){
         try {
-            String success = ticketService.updateStatus(ticketId);
+            String success = ticketService.updateStatus(ticketId, ticketDTO);
+            System.out.println(ticketDTO);
+            System.out.println(success);
             return ResponseEntity.status(200).body(success);
         }catch (Exception e){
             return ResponseEntity.status(500).body(e.getMessage());

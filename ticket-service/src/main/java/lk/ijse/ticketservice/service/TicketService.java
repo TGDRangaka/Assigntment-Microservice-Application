@@ -29,10 +29,10 @@ public class TicketService {
         return new ModelMapper().map(save, TicketDTO.class);
     }
 
-    public String updateStatus(String ticketId){
+    public String updateStatus(String ticketId, TicketDTO ticketDTO){
         Optional<TicketEntity> byId = ticketRepo.findById(ticketId);
         if(byId.isPresent()){
-            byId.get().setStatus(TicketStatus.CONFIRMED);
+            byId.get().setStatus(ticketDTO.getStatus());
             ticketRepo.save(byId.get());
             return "Ticket status updated successfully";
         }
