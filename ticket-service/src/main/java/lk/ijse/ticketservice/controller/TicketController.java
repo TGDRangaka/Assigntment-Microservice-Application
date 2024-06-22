@@ -19,7 +19,7 @@ public class TicketController {
     }
 
 //    create ticket
-    @PostMapping
+    @GetMapping
     public ResponseEntity createTicket(@RequestParam String userId, @RequestParam String vehicleId){
         try{
             TicketDTO ticket = ticketService.createTicket(userId, vehicleId);
