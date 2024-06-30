@@ -21,12 +21,12 @@ public class UserService {
         return new ModelMapper().map(save, UserDTO.class);
     }
 
-    public void update(UserDTO userDTO, String userId) {
+    public String update(UserDTO userDTO, String userId) {
         Optional<UserEntity> byId = userRepo.findById(userId);
         if(byId.isPresent()){
             userDTO.setId(userId);
             userRepo.save(new ModelMapper().map(userDTO, UserEntity.class));
-            return;
+            return "User Updated Successfully";
         }
 
         throw new RuntimeException("Couldn't find user with id " + userId);

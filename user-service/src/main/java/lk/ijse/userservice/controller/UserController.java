@@ -24,8 +24,9 @@ public class UserController {
 
 //    Profile Update
     @PutMapping("/{userId}")
-    public void updateUser(@RequestBody UserDTO user, @PathVariable String userId){
-        userService.update(user, userId);
+    public String updateUser(@RequestBody UserDTO user, @PathVariable String userId){
+        String update = userService.update(user, userId);
+        return update;
     }
 
 //    Credentials Verification
